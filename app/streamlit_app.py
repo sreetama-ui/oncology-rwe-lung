@@ -60,7 +60,7 @@ def run_cox(filtered_df, time_col="time", event_col="status"):
     df_enc = df_enc.rename(columns={time_col: "duration", event_col: "event"})
     # Fit Cox
     cph = CoxPHFitter()
-    cph.fit(df_enc, duration_col="duration", event_col="event", step_size=0.1)
+    cph.fit(df_enc, duration_col="duration", event_col="event")
     summary = cph.summary.reset_index().rename(columns={"index": "covariate"})
     # Add HR and formatted CI
     summary["HR"] = np.exp(summary["coef"])
